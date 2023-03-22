@@ -109,7 +109,7 @@ pipeline {
 				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Abhid2000/practice-002.git HEAD:master')
 					}
 				} else if (env.BRANCH_NAME == 'dev'){
-				build wait: false, job: '../git_job_pipeline/master'
+				build wait: false, job: '../git_job_pipeline/dev'
 				}
 			}
 		}	
