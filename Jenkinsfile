@@ -25,14 +25,14 @@ pipeline {
 									name: "Amsal Khan"
 								],
 							],
-							userRemoteConfigs: [[url: 'https://github.com/Amsal1/devops_ci_cd.git']]						
+							userRemoteConfigs: [[url: 'https://github.com/Abhid2000/practice-002.git']]						
 						]
 						)
 					} else if (env.BRANCH_NAME == 'dev'){	
 						checkout([
 							$class: 'GitSCM', 
 							branches: [[name: '*/dev']], 
-							userRemoteConfigs: [[url: 'https://github.com/Amsal1/devops_ci_cd.git']]
+							userRemoteConfigs: [[url: 'https://github.com/Abhid2000/practice-002.git']]
 							])
 						}
 					}
@@ -79,7 +79,7 @@ pipeline {
 			script {
 				if (env.BRANCH_NAME == 'master'){
 				sh """
-				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://3.109.212.132:83/index.html` = 200 ];
+				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://54.237.18.119:83/index.html` = 200 ];
 				then
 				echo "Merge Successful"
 				else
@@ -88,7 +88,7 @@ pipeline {
                 """
 			} else if (env.BRANCH_NAME == 'dev'){
 				sh """
-				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://3.109.212.132:82/index.html` = 200 ];
+				if [ `curl -o /dev/null -s -w "%{http_code}\n" http://54.237.18.119:82/index.html` = 200 ];
 				then
 				echo "Merge Successful"
 				else
@@ -106,7 +106,7 @@ pipeline {
 			script {
 			if (env.BRANCH_NAME == 'master'){
 				withCredentials([usernamePassword(credentialsId: '434b0b23-9deb-4ee6-85d4-43c4c23513bb', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Amsal1/devops_ci_cd.git HEAD:master')
+				sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Abhid2000/practice-002.git HEAD:master')
 					}
 				} else if (env.BRANCH_NAME == 'dev'){
 				build wait: false, job: '../git_job_pipeline/master'
